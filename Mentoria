@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BACKSTAGE CLUB — Mentoria Kevin & Jade</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #CC0000;
+  --red-dark: #A30000;
+  --black: #111111;
+  --dark: #0D0D0D;
+  --white: #FFFFFF;
+  --off: #F5F5F5;
+  --gray: #E8E8E8;
+  --gray2: #D0D0D0;
+  --text-dim: #555555;
+  --text-muted: #999999;
+  --gold: #B8860B;
+  --gold-bg: #FFFDF4;
+  --green: #1A5C38;
+  --green-bg: #F0FAF4;
+  --FD: 'Bebas Neue', sans-serif;
+  --FB: 'DM Sans', sans-serif;
+  --FM: 'Space Mono', monospace;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--white);
+  color: var(--black);
+  font-family: var(--FB);
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── HERO ─────────────────────────────── */
+.hero {
+  background: var(--dark);
+  padding: 80px 48px 72px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, var(--red), transparent);
+}
+.hero-inner { max-width: 960px; margin: 0 auto; }
+.hero-badge {
+  display: inline-block;
+  background: var(--red);
+  color: var(--white);
+  font-family: var(--FM);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  margin-bottom: 20px;
+}
+.hero-title {
+  font-family: var(--FD);
+  font-size: clamp(64px, 10vw, 120px);
+  line-height: 0.88;
+  color: var(--white);
+  letter-spacing: 0.01em;
+  margin-bottom: 6px;
+}
+.hero-title span { color: var(--red); }
+.hero-clients {
+  font-family: var(--FM);
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.5);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.hero-tagline {
+  font-family: var(--FB);
+  font-size: 15px;
+  color: rgba(255,255,255,0.35);
+  font-style: italic;
+  margin-bottom: 48px;
+  max-width: 560px;
+}
+.hero-meta {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 2px;
+  margin-top: 32px;
+}
+.hero-meta-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 18px 16px;
+  background: rgba(255,255,255,0.03);
+}
+.hero-meta-icon {
+  width: 32px; height: 32px;
+  flex-shrink: 0;
+  background: rgba(204,0,0,0.2);
+  border: 1px solid rgba(204,0,0,0.4);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px;
+}
+.hero-meta-label {
+  font-family: var(--FM);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 4px;
+}
+.hero-meta-value {
+  font-family: var(--FD);
+  font-size: 20px;
+  color: var(--white);
+  line-height: 1;
+}
+
+/* ── NAV ──────────────────────────────── */
+.nav-wrap {
+  background: var(--dark);
+  border-bottom: 2px solid rgba(255,255,255,0.06);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  align-items: stretch;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 0 48px;
+}
+.nav-inner::-webkit-scrollbar { display: none; }
+.nav-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 20px;
+  font-family: var(--FM);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: color 0.2s, border-color 0.2s;
+  background: none;
+  border-left: none; border-right: none; border-top: none;
+}
+.nav-tab:hover { color: rgba(255,255,255,0.65); }
+.nav-tab.active { color: var(--white); border-bottom-color: var(--red); }
+.tdot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  border: 1.5px solid currentColor;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+.nav-tab.active .tdot { background: currentColor; }
+
+/* ── SECTION ──────────────────────────── */
+.section { padding: 80px 0; border-bottom: 1px solid var(--gray); }
+.section-inner { max-width: 960px; margin: 0 auto; padding: 0 48px; }
+.sec-eyebrow {
+  font-family: var(--FM);
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.sec-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 24px; height: 2px;
+  background: var(--red);
+  flex-shrink: 0;
+}
+.sec-title {
+  font-family: var(--FD);
+  font-size: clamp(40px, 6vw, 68px);
+  line-height: 0.92;
+  letter-spacing: 0.02em;
+  margin-bottom: 8px;
+}
+.sec-sub {
+  font-size: 14px;
+  color: var(--text-dim);
+  margin-bottom: 40px;
+  font-style: italic;
+  max-width: 580px;
+}
+
+/* ── BLOCK ────────────────────────────── */
+.block { margin-bottom: 56px; }
+.block:last-child { margin-bottom: 0; }
+.block-title {
+  font-family: var(--FD);
+  font-size: 28px;
+  letter-spacing: 0.03em;
+  border-bottom: 2px solid var(--black);
+  padding-bottom: 8px;
+  margin-bottom: 16px;
+}
+
+/* ── HIGHLIGHT CARDS ──────────────────── */
+.hcard {
+  border-left: 4px solid var(--black);
+  padding: 24px 28px;
+  margin-bottom: 16px;
+  background: var(--off);
+}
+.hcard.dark {
+  background: var(--black);
+  border-left: 4px solid var(--red);
+  color: var(--white);
+}
+.hcard.dark p { color: rgba(255,255,255,0.7); }
+.hcard.dark strong { color: var(--white); }
+.hcard.red { border-left-color: var(--red); background: #FFF5F5; }
+.hcard.gold { border-left-color: var(--gold); background: var(--gold-bg); }
+.hcard p { color: var(--text-dim); font-size: 14px; line-height: 1.75; }
+.hcard p + p { margin-top: 10px; }
+.hcard strong { color: var(--black); font-weight: 700; }
+.hcard-label {
+  font-family: var(--FM);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.hcard.dark .hcard-label { color: rgba(255,255,255,0.35); }
+
+/* ── NUMBERED GRID ───────────────────── */
+.num-grid {
+  display: grid;
+  gap: 2px;
+  background: var(--gray);
+  border: 2px solid var(--gray);
+  margin-bottom: 16px;
+}
+.num-grid.col2 { grid-template-columns: repeat(2, 1fr); }
+.num-grid.col3 { grid-template-columns: repeat(3, 1fr); }
+.num-card { background: var(--white); padding: 28px 24px; }
+.num-card.dark-bg { background: var(--black); }
+.num-card.red-bg { background: var(--red); }
+.num-card.gold-bg { background: var(--gold-bg); border-top: 3px solid var(--gold); }
+.num-box {
+  font-family: var(--FD);
+  font-size: 52px;
+  line-height: 1;
+  color: var(--red);
+  margin-bottom: 10px;
+}
+.num-card.dark-bg .num-box { color: var(--red); }
+.num-card.red-bg .num-box { color: rgba(255,255,255,0.3); }
+.num-card-label {
+  font-family: var(--FM);
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.num-card.dark-bg .num-card-label,
+.num-card.red-bg .num-card-label { color: rgba(255,255,255,0.45); }
+.num-card-title { font-family: var(--FD); font-size: 22px; margin-bottom: 8px; color: var(--black); }
+.num-card.dark-bg .num-card-title,
+.num-card.red-bg .num-card-title { color: var(--white); }
+.num-card-text { font-size: 13px; color: var(--text-dim); line-height: 1.65; }
+.num-card.dark-bg .num-card-text { color: rgba(255,255,255,0.6); }
+.num-card.red-bg .num-card-text { color: rgba(255,255,255,0.85); }
+
+/* ── SPLIT GRID ──────────────────────── */
+.split-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  background: var(--gray);
+  border: 2px solid var(--gray);
+  margin-bottom: 16px;
+}
+.split-card { background: var(--white); padding: 28px 24px; }
+.split-card.dark { background: var(--black); }
+.split-card.red { background: var(--red); }
+.split-label {
+  font-family: var(--FM);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+.split-card.dark .split-label { color: rgba(255,255,255,0.4); }
+.split-card.red .split-label { color: rgba(255,255,255,0.6); }
+.split-title { font-family: var(--FD); font-size: 22px; margin-bottom: 12px; color: var(--black); }
+.split-card.dark .split-title { color: var(--white); }
+.split-card.red .split-title { color: var(--white); }
+.split-card ul { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.split-card ul li {
+  font-size: 13px;
+  color: var(--text-dim);
+  padding-left: 16px;
+  position: relative;
+  line-height: 1.5;
+}
+.split-card ul li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--red);
+  font-weight: 700;
+}
+.split-card.dark ul li { color: rgba(255,255,255,0.65); }
+.split-card.dark ul li::before { color: var(--red); }
+.split-card.red ul li { color: rgba(255,255,255,0.85); }
+.split-card.red ul li::before { color: rgba(255,255,255,0.5); }
+
+/* ── QUOTE ───────────────────────────── */
+.quote-block {
+  border-left: 4px solid var(--gray2);
+  padding: 28px 36px;
+  background: var(--off);
+  margin: 24px 0;
+}
+.quote-mark {
+  font-family: var(--FD);
+  font-size: 64px;
+  line-height: 0.6;
+  color: var(--red);
+  opacity: 0.45;
+  margin-bottom: 14px;
+}
+.quote-text {
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.7;
+  color: var(--black);
+  margin-bottom: 14px;
+  max-width: 680px;
+}
+.quote-author {
+  font-family: var(--FM);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ── TIMELINE MÊS ────────────────────── */
+.month-block { margin-bottom: 40px; }
+.month-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+.month-num {
+  font-family: var(--FD);
+  font-size: 56px;
+  line-height: 1;
+  color: var(--red);
+  min-width: 52px;
+}
+.month-name {
+  font-family: var(--FD);
+  font-size: 36px;
+  color: var(--black);
+}
+.month-theme {
+  font-family: var(--FM);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+.week-list { display: flex; flex-direction: column; gap: 2px; }
+.week-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  background: var(--white);
+  border: 1px solid var(--gray);
+  border-left: 3px solid var(--gray2);
+  padding: 16px 20px;
+  transition: border-left-color 0.15s, background 0.15s;
+}
+.week-item:hover { border-left-color: var(--red); background: var(--off); }
+.week-num {
+  font-family: var(--FM);
+  font-size: 10px;
+  color: var(--red);
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+  min-width: 60px;
+  padding-top: 2px;
+}
+.week-text { font-size: 14px; color: var(--text-dim); line-height: 1.5; }
+.week-text strong { color: var(--black); }
+
+/* ── ACTION CARDS ────────────────────── */
+.actions-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--gray);
+  border: 2px solid var(--gray);
+}
+.ac-card {
+  background: var(--white);
+  padding: 24px 20px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  transition: background 0.15s;
+}
+.ac-card:hover { background: var(--off); }
+.ac-num {
+  font-family: var(--FD);
+  font-size: 44px;
+  color: var(--red);
+  line-height: 1;
+  flex-shrink: 0;
+  min-width: 48px;
+}
+.ac-title { font-weight: 700; font-size: 14px; margin-bottom: 4px; }
+.ac-text { font-size: 12px; color: var(--text-dim); line-height: 1.55; }
+
+/* ── IMPACT SPLIT ────────────────────── */
+.impact-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: var(--gray);
+  border: 2px solid var(--gray);
+  margin-top: 32px;
+}
+.impact-main {
+  background: var(--black);
+  padding: 36px 32px;
+}
+.impact-main-label {
+  font-family: var(--FM);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 14px;
+}
+.impact-main-text {
+  font-size: 18px;
+  color: var(--white);
+  line-height: 1.65;
+  font-style: italic;
+}
+.impact-main-text strong { color: var(--red); font-style: normal; }
+.impact-side {
+  background: var(--red);
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.impact-side-label {
+  font-family: var(--FM);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 10px;
+}
+.impact-side-value {
+  font-family: var(--FD);
+  font-size: 52px;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.impact-side-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.8);
+}
+
+/* ── FOOTER ──────────────────────────── */
+.footer {
+  background: var(--dark);
+  padding: 40px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 3px solid var(--red);
+}
+.ft-brand { font-family: var(--FD); font-size: 28px; color: var(--white); letter-spacing: 0.05em; }
+.ft-brand span { color: var(--red); }
+.ft-info {
+  font-family: var(--FM);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.3);
+  text-align: right;
+  line-height: 2;
+}
+
+/* ── FADE IN ─────────────────────────── */
+.fi { opacity: 0; transform: translateY(14px); transition: opacity 0.45s ease, transform 0.45s ease; }
+.fi.on { opacity: 1; transform: translateY(0); }
+
+/* ── MOBILE NAV ──────────────────────── */
+.mob-bar {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 52px;
+  background: var(--dark);
+  border-bottom: 2px solid var(--red);
+  z-index: 500;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+.mob-logo { font-family: var(--FD); font-size: 22px; color: var(--white); letter-spacing: 0.04em; }
+.mob-logo span { color: var(--red); }
+.ham { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+.ham span { display: block; width: 24px; height: 2px; background: rgba(255,255,255,0.7); transition: all 0.25s; }
+.ham.o span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.ham.o span:nth-child(2) { opacity: 0; }
+.ham.o span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.mob-drawer {
+  display: none;
+  position: fixed;
+  top: 52px; left: 0; right: 0; bottom: 0;
+  background: var(--dark);
+  z-index: 499;
+  padding: 16px 0;
+  transform: translateX(-100%);
+  transition: transform 0.3s;
+  overflow-y: auto;
+}
+.mob-drawer.o { transform: translateX(0); }
+.mob-drawer .nav-tab {
+  display: flex;
+  padding: 16px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  border-left: none; border-right: none; border-top: none;
+  border-bottom-width: 1px;
+}
+.mob-drawer .nav-tab.active { border-left: 3px solid var(--red) !important; color: var(--white); }
+
+/* ── RESPONSIVE ──────────────────────── */
+@media (max-width: 900px) {
+  .mob-bar { display: flex; }
+  .mob-drawer { display: block; }
+  .nav-wrap { display: none; }
+  body { padding-top: 52px; }
+  .hero { padding: 48px 24px 40px; }
+  .hero-meta { grid-template-columns: repeat(2, 1fr); }
+  .section { padding: 56px 0; }
+  .section-inner { padding: 0 24px; }
+  .split-grid { grid-template-columns: 1fr; }
+  .num-grid.col2 { grid-template-columns: 1fr; }
+  .num-grid.col3 { grid-template-columns: 1fr; }
+  .actions-grid { grid-template-columns: 1fr; }
+  .impact-split { grid-template-columns: 1fr; }
+  .footer { flex-direction: column; gap: 16px; text-align: center; padding: 28px 24px; }
+  .ft-info { text-align: center; }
+}
+@media (max-width: 480px) {
+  .hero-title { font-size: 52px; }
+  .sec-title { font-size: 36px; }
+  .hero-meta { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- MOBILE NAV -->
+<div class="mob-bar">
+  <div class="mob-logo">BACKSTAGE<span>CLUB</span></div>
+  <div class="ham" id="ham" onclick="toggleDrawer()">
+    <span></span><span></span><span></span>
+  </div>
+</div>
+<div class="mob-drawer" id="drawer">
+  <a class="nav-tab active" href="#diagnostico"><span class="tdot" style="color:var(--red)"></span>Diagnóstico</a>
+  <a class="nav-tab" href="#estrutura"><span class="tdot" style="color:#4A9EE8"></span>Estrutura</a>
+  <a class="nav-tab" href="#cronograma"><span class="tdot" style="color:#27AE60"></span>Cronograma</a>
+  <a class="nav-tab" href="#proximos"><span class="tdot" style="color:#C9A227"></span>Próximos Passos</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">Mentoria Individual · Marketing Digital</div>
+    <div class="hero-title">BACKSTAGE<span>CLUB</span></div>
+    <div class="hero-clients">Kevin Gontijo & Jade Palma</div>
+    <div class="hero-tagline">Três meses de estrutura para a Omna, a Soulmate e os negócios em construção</div>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <div class="hero-meta-icon">📅</div>
+        <div>
+          <div class="hero-meta-label">Período</div>
+          <div class="hero-meta-value">Jul · Ago · Set</div>
+        </div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-icon">🗓</div>
+        <div>
+          <div class="hero-meta-label">Frequência</div>
+          <div class="hero-meta-value">1× semana</div>
+        </div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-icon">⏱</div>
+        <div>
+          <div class="hero-meta-label">Duração</div>
+          <div class="hero-meta-value">12 Sessões</div>
+        </div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-icon">🗣</div>
+        <div>
+          <div class="hero-meta-label">Formato</div>
+          <div class="hero-meta-value">Individual</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <a class="nav-tab active" href="#diagnostico"><span class="tdot" style="color:var(--red)"></span>Diagnóstico</a>
+    <a class="nav-tab" href="#estrutura"><span class="tdot" style="color:#4A9EE8"></span>Estrutura Geral</a>
+    <a class="nav-tab" href="#cronograma"><span class="tdot" style="color:#27AE60"></span>Cronograma</a>
+    <a class="nav-tab" href="#proximos"><span class="tdot" style="color:#C9A227"></span>Próximos Passos</a>
+  </div>
+</div>
+
+<!-- DIAGNÓSTICO -->
+<section class="section" id="diagnostico">
+  <div class="section-inner">
+    <div class="sec-eyebrow">Diagnóstico</div>
+    <div class="sec-title">O QUE EU OUVI NA NOSSA CONVERSA</div>
+    <div class="sec-sub">Quatro pontos que definem onde vocês estão e o que a mentoria vai resolver.</div>
+
+    <div class="num-grid col2 fi">
+      <div class="num-card">
+        <div class="num-box">01</div>
+        <div class="num-card-title">Vocês não estão começando do zero</div>
+        <div class="num-card-text">20+ anos de marca, espaço físico em construção, clientes corporativos já pagando o ano inteiro. A base existe — o que falta é estrutura de marketing.</div>
+      </div>
+      <div class="num-card dark-bg">
+        <div class="num-box">02</div>
+        <div class="num-card-title">O problema nunca foi o produto</div>
+        <div class="num-card-text">Foi quem cuidou do marketing. Público errado chegando, identidade mudando a cada agência contratada. Isso acaba aqui.</div>
+      </div>
+      <div class="num-card red-bg">
+        <div class="num-box">03</div>
+        <div class="num-card-title">Jade é a especialista por trás das marcas</div>
+        <div class="num-card-text">Pós em neurociência, terapia de contraste, propósito de sustentabilidade real — e isso ainda não aparece na Omna nem na Soulmate. Essa é a maior alavanca.</div>
+      </div>
+      <div class="num-card">
+        <div class="num-box">04</div>
+        <div class="num-card-title">Kevin entende de estratégia e venda</div>
+        <div class="num-card-text">Falta estrutura para transformar isso em sistema — não em mais uma pessoa decidindo sozinha. Vamos montar o processo.</div>
+      </div>
+    </div>
+
+    <div class="quote-block fi">
+      <div class="quote-mark">"</div>
+      <div class="quote-text">Eu prefiro uma equipe menor e bem preparada do que muita gente trabalhando e não tendo resultado.</div>
+      <div class="quote-author">— Jade Palma · Sobre a experiência com agências anteriores</div>
+    </div>
+
+    <div class="hcard dark fi">
+      <div class="hcard-label">A premissa da mentoria</div>
+      <p>Essa frase é a fundação de tudo. <strong>Não vamos terceirizar o marketing de novo</strong> — vamos internalizar o conhecimento. Ao final dos três meses, vocês vão saber o que fazer, como medir e quando contratar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ESTRUTURA -->
+<section class="section" id="estrutura">
+  <div class="section-inner">
+    <div class="sec-eyebrow">Estrutura Geral</div>
+    <div class="sec-title">DOIS EIXOS, UM MESMO ECOSSISTEMA</div>
+    <div class="sec-sub">A mentoria trabalha dois negócios em paralelo — produtos físicos e infoprodutos — conectados pela identidade das marcas e pelo posicionamento da Jade.</div>
+
+    <div class="split-grid fi">
+      <div class="split-card dark">
+        <div class="split-label">Eixo 01</div>
+        <div class="split-title">Produtos Físicos & Serviços</div>
+        <ul>
+          <li>Posicionamento e identidade da Omna e da Soulmate</li>
+          <li>Branding pessoal da Jade como rosto dos negócios</li>
+          <li>Estratégia de conteúdo para Instagram (Omna / Soulmate / Jade)</li>
+          <li>Tráfego pago para loja, eventos e espaço físico da Omna</li>
+          <li>Funil para venda de assinatura mensal do Softol</li>
+          <li>Sistema de indicação — convide e participe</li>
+        </ul>
+      </div>
+      <div class="split-card red">
+        <div class="split-label">Eixo 02</div>
+        <div class="split-title">Infoprodutos & Oferta Digital</div>
+        <ul>
+          <li>Produto de entrada de baixo ticket (R$37–150)</li>
+          <li>Conteúdo curto ensinando o que Jade já domina</li>
+          <li>Funil: de quem nunca ouviu falar até cliente</li>
+          <li>Atendimento automatizado com IA treinada na voz das marcas</li>
+          <li>ManyChat e automações nativas do Instagram</li>
+          <li>Conexão entre infoproduto e experiência presencial da Omna</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CRONOGRAMA -->
+<section class="section" id="cronograma">
+  <div class="section-inner">
+    <div class="sec-eyebrow">Cronograma</div>
+    <div class="sec-title">TRÊS MESES, UM ENCONTRO POR SEMANA</div>
+    <div class="sec-sub">Toda terça-feira, 11h — 1h a 1h30 de mentoria focada em um tema específico. Início: 1 de julho de 2026.</div>
+
+    <!-- JULHO -->
+    <div class="month-block fi">
+      <div class="month-header">
+        <div class="month-num">07</div>
+        <div>
+          <div class="month-name">JULHO</div>
+          <div class="month-theme">Fase de Fundação</div>
+        </div>
+      </div>
+      <div class="week-list">
+        <div class="week-item">
+          <div class="week-num">SEM 01</div>
+          <div class="week-text"><strong>Diagnóstico + alinhamento de plano estratégico</strong></div>
+        </div>
+        <div class="week-item">
+          <div class="week-num">SEM 02</div>
+          <div class="week-text"><strong>Construção da identidade de branding pessoal da Jade</strong> — Start no posicionamento nos bastidores</div>
+        </div>
+        <div class="week-item">
+          <div class="week-num">SEM 03</div>
+          <div class="week-text"><strong>Conteúdos estratégicos para o Instagram</strong> — Omna / Soulmate / Jade</div>
+        </div>
+        <div class="week-item">
+          <div class="week-num">SEM 04</div>
+          <div class="week-text"><strong>Conceitos de tráfego pago e métricas</strong> — KPIs de negócio</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AGOSTO -->
+    <div class="month-block fi">
+      <div class="month-header">
+        <div class="month-num" style="color:var(--black)">08</div>
+        <div>
+          <div class="month-name">AGOSTO</div>
+          <div class="month-theme">Fase de Construção</div>
+        </div>
+      </div>
+      <div class="week-list">
+        <div class="week-item">
+          <div class="week-num">SEM 01</div>
+          <div class="week-text"><strong>Análise do gerenciador de anúncios</strong> do tráfego atual</div>
+        </div>
+        <div class="week-item">
+          <div class="week-num">SEM 02</div>
+          <div class="week-text"><strong>Estratégia de roteiros para anúncios</strong> das marcas</div>
+        </div>
+        <div class="week-item">
+          <div class="week-num">SEM 03</div>
+          <div class="week-text"><strong>Start nas novas campanhas</strong> — com os anúncios criados</div>
+        </div>
+        <div class="week-item">
+          <div class="week-num">SEM 04</div>
+          <div class="week-text"><strong>IA para criação de produtos</strong> conectado às marcas</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SETEMBRO -->
+    <div class="month-block fi">
+      <div class="month-header">
+        <div class="month-num" style="color:var(--red)">09</div>
+        <div>
+          <div class="month-name">SETEMBRO</div>
+          <div class="month-theme">Fase de Aceleração</div>
+        </div>
+      </div>
+      <div class="week-list">
+        <div class="week-item">
+          <div class="week-num">SEM 01</div>
+          <div class="week-text"><strong>IA aplicada para criação de conteúdo</strong></div>
+        </div>
+        <div class="week-item">
+          <div class="week-num">SEM 02</div>
+          <div class="week-text"><strong>Automação de atendimento com IA</strong> — ManyChat e WhatsApp de vendas</div>
+        </div>
+        <div class="week-item">
+          <div class="week-num">SEM 03</div>
+          <div class="week-text"><strong>Contratação e treinamento</strong> para equipe interna</div>
+        </div>
+        <div class="week-item">
+          <div class="week-num">SEM 04</div>
+          <div class="week-text"><strong>Revisão geral da estratégia</strong> — gargalos, otimizações e preparação para a Black Friday</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRÓXIMOS PASSOS -->
+<section class="section" id="proximos">
+  <div class="section-inner">
+    <div class="sec-eyebrow">Próximos Passos</div>
+    <div class="sec-title">COMO COMEÇAMOS</div>
+    <div class="sec-sub">Três ações para oficializar e dar início à mentoria.</div>
+
+    <div class="actions-grid fi">
+      <div class="ac-card">
+        <div class="ac-num">01</div>
+        <div>
+          <div class="ac-title">Pagamento</div>
+          <div class="ac-text">Via Pix, parcelado em 2× (R$2.500 por parcela) — contrato formalizado junto com a confirmação.</div>
+        </div>
+      </div>
+      <div class="ac-card">
+        <div class="ac-num">02</div>
+        <div>
+          <div class="ac-title">Agendamento fixo semanal</div>
+          <div class="ac-text">Terça-feira, 1º de julho, 11h — primeiro encontro. Recorrência semanal confirmada para os três meses.</div>
+        </div>
+      </div>
+      <div class="ac-card">
+        <div class="ac-num">03</div>
+        <div>
+          <div class="ac-title">Acesso às campanhas</div>
+          <div class="ac-text">Vocês reúnem os acessos do gerenciador de anúncios da agência anterior para revisão na primeira sessão.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="impact-split fi">
+      <div class="impact-main">
+        <div class="impact-main-label">A realidade do negócio de vocês</div>
+        <div class="impact-main-text">
+          O que falta para vocês não é produto, não é audiência, não é propósito.<br><br>
+          É só <strong>arrumar as peças do marketing</strong> — porque vocês já estão no jogo.
+        </div>
+      </div>
+      <div class="impact-side">
+        <div class="impact-side-label">Investimento</div>
+        <div class="impact-side-value">R$ 5.000</div>
+        <div class="impact-side-sub">3 meses · 12 sessões<br>2× de R$2.500 via Pix</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div>
+    <div class="ft-brand">BACKSTAGE<span>CLUB</span></div>
+    <div style="font-size:11px;margin-top:4px;font-family:var(--FM);letter-spacing:0.08em;color:rgba(255,255,255,0.25)">Scale Group · Gestão Estratégica de Marketing</div>
+  </div>
+  <div class="ft-info">
+    Mentoria Individual · Kevin & Jade<br>
+    Julho · Agosto · Setembro 2026<br>
+    Documento confidencial
+  </div>
+</div>
+
+<script>
+// Hamburger
+function toggleDrawer() {
+  const ham = document.getElementById('ham');
+  const drawer = document.getElementById('drawer');
+  ham.classList.toggle('o');
+  drawer.classList.toggle('o');
+}
+
+// Close drawer on link click
+document.querySelectorAll('.mob-drawer .nav-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.getElementById('ham').classList.remove('o');
+    document.getElementById('drawer').classList.remove('o');
+  });
+});
+
+// Scroll spy
+const sections = document.querySelectorAll('section[id]');
+const tabs = document.querySelectorAll('.nav-tab');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.getAttribute('id');
+      tabs.forEach(tab => {
+        tab.classList.toggle('active', tab.getAttribute('href') === '#' + id);
+      });
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+
+sections.forEach(s => observer.observe(s));
+
+// Fade in
+const fiObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); fiObs.unobserve(e.target); } });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.fi').forEach(el => fiObs.observe(el));
+</script>
+</body>
+</html>
